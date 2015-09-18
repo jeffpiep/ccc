@@ -1,12 +1,14 @@
+// adapted from sketch found at http://forum.arduino.cc/index.php?topic=133894.0
 
+// define pins to match the CNC shield http://blog.protoneer.co.nz/arduino-cnc-shield/
 #define enPin 8 // enable pin
-#define stpPin 2  //connect pin 13 to step
-#define dirPin 5  // connect pin 12 to dir
+#define stpPin 2  //connect pin 2 to step
+#define dirPin 5  // connect pin 5 to dir
 
 boolean a = false; // direction counter
 int pw = 1; // pulse width to CNC shield
 int pri = 3; // pulse rep interval (determines speed)
-int num = 40;
+int num = 40; // number of steps in a move
 
 void setup() 
 {                
@@ -15,7 +17,7 @@ void setup()
   pinMode(dirPin, OUTPUT);
   digitalWrite(stpPin, LOW);
   digitalWrite(dirPin, LOW);
-  digitalWrite(enPin, LOW);
+  digitalWrite(enPin, LOW); // enable is really enable-bar
 }
 
 void loop() 
