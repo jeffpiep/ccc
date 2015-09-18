@@ -23,27 +23,24 @@ void setup()
 void loop() 
 {
   // alternate directions with counter a
-  if (a)
-  {
+  if (a) {
     digitalWrite(dirPin,HIGH);
   }
-  else
-  {
+  else {
     digitalWrite(dirPin,LOW);
   }
-  
-  for (int b=0; b<num; b++)
-  {
-    stepMotor();
+
+  for (int b=0; b<num; b++) {
+    // step motor
+    digitalWrite(stpPin, HIGH);
+    delay(pw);
+    digitalWrite(stpPin, LOW);
+    // wait PRI length to set speed
     delay(pri);
   }
+  // reverse direction next go around
   a = !a;
 }
 
-void stepMotor()
-{
-  digitalWrite(stpPin, HIGH);
-  delay(pw);
-  digitalWrite(stpPin, LOW);
-}
+
 
