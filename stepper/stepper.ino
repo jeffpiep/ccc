@@ -5,7 +5,7 @@
 #define stpPin 2  //connect pin 2 to step
 #define dirPin 5  // connect pin 5 to dir
 
-boolean a = false; // direction counter 
+boolean a = false; // direction counter
 int pw = 1; // pulse width to CNC shield
 int pri = 3; // pulse rep interval (determines speed)
 int num = 40; // number of steps in a move
@@ -31,15 +31,19 @@ void loop()
   {
     digitalWrite(dirPin,LOW);
   }
-
+  
   for (int b=0; b<num; b++)
   {
-    digitalWrite(stpPin, HIGH);
-    delay(pw);
-    digitalWrite(stpPin, LOW);
+    stepMotor();
     delay(pri);
   }
   a = !a;
 }
 
+void stepMotor()
+{
+  digitalWrite(stpPin, HIGH);
+  delay(pw);
+  digitalWrite(stpPin, LOW);
+}
 
