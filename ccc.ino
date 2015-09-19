@@ -6,9 +6,9 @@
 #define dirPin 5  // connect pin 5 to dir
 
 boolean a = false; // direction counter
-int pw = 1; // pulse width to CNC shield
-int pri = 2; // pulse rep interval (determines speed)
-int num = 25; // number of steps in a move
+int pw = 10; // pulse width to CNC shield
+int pri = 2500; // pulse rep interval (determines speed)
+int num = 12; // number of steps in a move
 
 void setup()
 {
@@ -18,8 +18,7 @@ void setup()
   digitalWrite(stpPin, LOW);
   digitalWrite(dirPin, HIGH);
   digitalWrite(enPin, LOW); // enable is really enable-bar
-
-    for (int b = 0; b < num; b++) stepMotor();
+  for (int b = 0; b < num; b++) stepMotor();
 }
 
 void loop()
@@ -40,9 +39,9 @@ void loop()
 void stepMotor() {
   // step motor
   digitalWrite(stpPin, HIGH);
-  delay(pw);
+  delayMicroseconds(pw);
   digitalWrite(stpPin, LOW);
   // wait PRI length to set speed
-  delay(pri);
+  delayMicroseconds(pri);
 }
 
