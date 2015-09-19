@@ -10,8 +10,8 @@ int pw = 1; // pulse width to CNC shield
 int pri = 2; // pulse rep interval (determines speed)
 int num = 25; // number of steps in a move
 
-void setup() 
-{                
+void setup()
+{
   pinMode(enPin, OUTPUT);
   pinMode(stpPin, OUTPUT);
   pinMode(dirPin, OUTPUT);
@@ -19,37 +19,30 @@ void setup()
   digitalWrite(dirPin, HIGH);
   digitalWrite(enPin, LOW); // enable is really enable-bar
 
-  for (int b=0; b<20; b++) {
-    // step motor
-    digitalWrite(stpPin, HIGH);
-    delay(pw);
-    digitalWrite(stpPin, LOW);
-    // wait PRI length to set speed
-    delay(pri);
-  }
+    for (int b = 0; b < num; b++) stepMotor();
 }
 
-void loop() 
+void loop()
 {
   // alternate directions with counter a
   if (a) {
-    digitalWrite(dirPin,HIGH);
+    digitalWrite(dirPin, HIGH);
   }
   else {
-    digitalWrite(dirPin,LOW);
+    digitalWrite(dirPin, LOW);
   }
 
-  for (int b=0; b<num; b++) {
-    // step motor
-    digitalWrite(stpPin, HIGH);
-    delay(pw);
-    digitalWrite(stpPin, LOW);
-    // wait PRI length to set speed
-    delay(pri);
-  }
+  for (int b = 0; b < num; b++) stepMotor();
   // reverse direction next go around
   a = !a;
 }
 
-
+void stepMotor() {
+  // step motor
+  digitalWrite(stpPin, HIGH);
+  delay(pw);
+  digitalWrite(stpPin, LOW);
+  // wait PRI length to set speed
+  delay(pri);
+}
 
